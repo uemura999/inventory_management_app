@@ -1,31 +1,18 @@
-# Python関連のファイル
+# Python関連
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
 
 # 仮想環境
 venv/
-.env/
+.env
 
 # Docker関連
-docker-compose.override.yml  # 環境ごとの設定ファイルは除外
-db_data/                     # Dockerボリュームデータがホストに保存されている場合
+docker-compose.override.yml
+db_data/
 
-# 環境設定
-.env                         # 環境変数の設定ファイルを除外
+# Mac固有
+.DS_Store
 
-# IDEやエディタ関連
+# IDE/エディタ関連
 .vscode/
 .idea/
-*.sublime-workspace
-
-# OS固有のファイル
-.DS_Store
-Thumbs.db
-
-# Logファイル
-*.log
-
-# node_modules
-node_modules/
