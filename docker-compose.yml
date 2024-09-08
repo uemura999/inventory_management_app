@@ -1,20 +1,12 @@
-version: '3.8'  # Composeファイルのバージョンを指定
-
-services:  # コンテナサービスの定義開始
-  db:  # サービス名（コンテナ名）を 'db' とする
-    image: mysql:8  # 使用するMySQLの公式イメージとバージョン指定
-    command:  # MySQL起動時に実行するコマンド
-      - --collation-server=utf8mb4_unicode_ci  # 文字コードをUTF-8に設定
-      - --character-set-server=utf8mb4  # 文字セットをUTF-8に設定
-    environment:  # 環境変数の設定
+services:
+  ap-db:
+    image: mysql:8.0
+    command:
+      - --collation-server=utf8mb4_0900_bin
+      - --transaction-isolation=READ-COMMITTED
+    restart: always
+    environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      TZ: Asia/Tokyo  # タイムゾーンの設定
-    ports:  # ホストとコンテナ間のポートマッピング
-      - "3306:3306"  # ホストの3306ポートをコンテナの3306ポートにマッピング
-    volumes:  # 永続データの保存先を定義
-      - db_data:/var/lib/mysql  # MySQLのデータをホストに保存して永続化
-    restart: always  # コンテナが停止した場合に自動で再起動する設定
-
-volumes:  # 永続ボリュームの定義
-  db_data:  # 'db_data'という名前のボリュームを定義
+      TZ: Asia/Tokyo
+    ports:
+      - "53306:3306"
